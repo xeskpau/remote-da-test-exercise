@@ -43,6 +43,62 @@ WHERE SubsetSales.rank_ = 1
 ORDER BY SubsetSales.`Month` ASC;
 
 # Task 2.
+WITH
+  Products AS (
+    SELECT DISTINCT ProductKey, ProductName
+    FROM rullansabater.remote.DimProduct
+  ),
+  Territories AS (
+    SELECT DISTINCT SalesTerritoryKey, SalesTerritoryCountry
+    FROM rullansabater.remote.DimSalesTerritory
+  ),
+  # Get monthly sales by product & territory.
+  ProductTerritorySalesMonthly AS (
+    SELECT
+      ProductKey,
+      SalesTerritoryKey,
+      EXTRACT(MONTH FROM OrderDate) AS `Month`,
+      SUM(SalesAmount) AS SalesAmount,
+    FROM rullansabater.remote.FactResellerSales
+    WHERE EXTRACT(YEAR FROM OrderDate) = 2012
+    GROUP BY 1, 2, 3
+  ),
+  # Get monthly sales by product.
+  ProductSalesMonthly AS (
+    SELECT
+      ProductKey,
+      `Month`,
+      SUM(SalesAmount) AS SalesAmount,
+    FROM ProductTerritorySalesMonthly
+    GROUP BY 1, 2
+  ),
+  # Rank monthly sales by product & territory.
+  RankedProductSalesMonthly AS (
+    SELECT
+      ProductKey,
+      `Month`,
+      RANK() OVER (
+        PARTITION BY `Month`
+        ORDER BY SalesAmount ASC  # Lowest sales.
+        ) AS rank_
+    FROM ProductSalesMonthly
+  )
+SELECT
+  Sales.`Month`,
+  Territories.SalesTerritoryCountry,
+  Products.ProductName,
+  Sales.SalesAmount,
+FROM RankedProductSalesMonthly AS Ranked
+LEFT JOIN ProductTerritorySalesMonthly AS Sales
+  ON
+    Ranked.ProductKey =  Sales.ProductKey
+    AND Ranked.`Month` =  Sales.`Month`
+LEFT JOIN Products
+  ON Sales.ProductKey = Products.ProductKey
+LEFT JOIN Territories
+  ON Sales.SalesTerritoryKey = Territories.SalesTerritoryKey 
+WHERE Ranked.rank_ = 1  # Only keep lowest-performing product.
+ORDER BY `Month` ASC, 2, 3;
 
 # Task 3.
 WITH
