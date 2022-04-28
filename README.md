@@ -109,6 +109,10 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 > 
 </details>
 
+**Assumption:**
+ * The prompt is requesting to (1) calculate the lowest revenue-generating product **globally** at **monthly level** in 2012; and (2) for each product, **break down its monthly sales by country**. *For example, in January we might find that product "X" had the lowest global revenue with 100€, which was distributed across US (50€), UK (40€), and France (10€).*
+ * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to calculate the lowest revenue-generating product by **country for each month in 2012**. *For example, in January we might find that product "X" had the lowest revenue in France (10€).*
+
 ### Task 3
 
 
