@@ -1,14 +1,14 @@
 
-# GitHub ─ Data Analyst Test Exercise
+# Remote.com ─ Data Analyst Test Exercise
 
 ## Goal
 
-As a part of the interview process for a Data Analyst position at GitHub, we want to **provide a solution to 5 data analysis tasks and 3 data visualization**.
+As a part of the interview process for a Data Analyst position at Remote.com, we want to **provide a solution to 5 data analysis tasks and 3 data visualization**.
 
 
 ## Data overview
 
-GitHub has shared a spreadsheet with 7 sheets of raw data (see file `Data Analyst Assignment.xlsx`; #TODO: Attach file). Each sheet can be considered a separate data table, and their content is summarized as follows (see  section ***Scoping*** below for more information; #TODO: Add link to Scoping.) ─
+Remote.com has shared a spreadsheet with 7 sheets of raw data (see file `Data Analyst Assignment.xlsx`; #TODO: Attach file). Each sheet can be considered a separate data table, and their content is summarized as follows (see  section ***Scoping*** below for more information; #TODO: Add link to Scoping.) ─
 
 | # | Table name | Primary key | Candidate key | Comment |
 |:--:|:--:|:--:|:--:|:--:|
@@ -148,6 +148,10 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 >
 > -   Tables containing the information are _DimProduct, FactResellerSales_
 </details>
+
+**Assumption:**
+ * The prompt is requesting to find all historical data for products that had any sales in 2012. As such, we will show all months of data for any product that had sales during 2012. This means that if a product had sales at any time in 2012, I would present their sales across all history (e.g. 2011, 2013,...).
+ * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to find data in 2012 (i.e. 12 months only) for products with sales, and their monthly sales breakdown. Here, we would show all months of data for any product that had sales during 2012. This means that we would only present the sales of the product in the year 2012.
 
 ### Task 5
 
