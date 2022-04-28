@@ -107,3 +107,75 @@ ORDER BY 1 DESC;
 # Task 4.
 
 # Task 5.
+# TODO: write findings in README.
+# Findings: Min age is 36 and max age is 106.
+# We should probably adjust the buckets so that 
+# there is a roughly equal distribution.
+# See the data viz task for this.
+
+WITH
+  # Note: Birthday is in format "DD/MM/YY", automatically interpreted as string.
+  # Note: MaritalStatus and Gender contain only 2 values each.
+  Customers AS (
+    SELECT
+      MaritalStatus,
+      Gender,
+      # Difference in years between today and the customer's birthday.
+      DATE_DIFF(
+        CURRENT_DATE(),
+        # Convert the `birthdate` field from `DD/MM/YY` to `YYYY-MM-DD`.
+        # TODO: Assumption is all are born in 20th century.
+        DATE(CONCAT('19', RIGHT(birthdate, 2), '-', SUBSTR(birthdate, 4, 2), '-', LEFT(birthdate, 2))),
+        YEAR) AS age,
+    FROM rullansabater.github.DimCustomer
+  ),
+  CustomerGroups AS (
+    SELECT
+      MaritalStatus,
+      Gender,
+      age < 35 AS is_lower_age,
+      age BETWEEN 35 AND 50 AS is_middle_age,
+      age > 50 AS is_upper_age,
+      COUNT(*) AS num_customers
+    FROM Customers
+    GROUP BY 1, 2, 3, 4, 5
+  ),
+  # Transform data to desired format.
+  # Note: PIVOT not available in all SQL implementations.
+  CustomerGroupsPivot AS (
+    SELECT 
+      MaritalStatus, 
+      Gender, 
+      num_customers AS `Age <35`,
+      0.0 AS `Age between 35-50`,
+      0.0 AS `Age > 50`
+    FROM CustomerGroups
+    WHERE is_lower_age
+    UNION ALL
+    SELECT 
+      MaritalStatus, 
+      Gender, 
+      0.0 AS `Age <35`,
+      num_customers AS `Age between 35-50`,
+      0.0 AS `Age > 50`
+    FROM CustomerGroups
+    WHERE is_middle_age
+    UNION ALL
+    SELECT 
+      MaritalStatus, 
+      Gender, 
+      0.0 AS `Age <35`,
+      0.0 AS `Age between 35-50`,
+      num_customers AS `Age > 50`
+    FROM CustomerGroups
+    WHERE is_upper_age
+  )
+SELECT
+  MaritalStatus,
+  Gender,
+  SUM(`Age <35`) AS `Age <35`,
+  SUM(`Age between 35-50`) AS `Age between 35-50`,
+  SUM(`Age > 50`) AS `Age > 50`
+FROM CustomerGroupsPivot
+GROUP BY 1, 2
+ORDER BY 1, 2;
