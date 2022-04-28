@@ -87,7 +87,7 @@ SELECT
   Sales.`Month`,
   Territories.SalesTerritoryCountry,
   Products.ProductName,
-  Sales.SalesAmount,
+  SUM(Sales.SalesAmount) AS SalesAmount,
 FROM RankedProductSalesMonthly AS Ranked
 LEFT JOIN ProductTerritorySalesMonthly AS Sales
   ON
@@ -97,7 +97,9 @@ LEFT JOIN Products
   ON Sales.ProductKey = Products.ProductKey
 LEFT JOIN Territories
   ON Sales.SalesTerritoryKey = Territories.SalesTerritoryKey 
-WHERE Ranked.rank_ = 1  # Only keep lowest-performing product.
+# Keep only lowest performing product (i.e. first ranked).
+WHERE Ranked.rank_ = 1
+GROUP BY 1, 2, 3
 ORDER BY `Month` ASC, 2, 3;
 
 # Task 3.
