@@ -164,6 +164,61 @@ GROUP BY 1
 ORDER BY 1 DESC;
 
 # Task 4.
+# Note:
+#   Please see the assumption in the README document.
+#   The query below will show all historical sales for
+#   products that had sales in 2012.
+#   Since we need the `OrderMonth` as an output column,
+#   the output field `SalesAmount` may contain data
+#   aggregated across multiple years (e.g. Jan'12,
+#   Jan'13,... which all correspond to `OrderMonth = 1`).
+WITH
+  Products AS (
+    SELECT DISTINCT
+      ProductKey,
+      # Obtain the current product key for the product.
+      # For example, `ProductKey IN (212, 213, 214) all
+      # correspond to the same product. By doing this we
+      # will consolidate the SalesAmount of all the product
+      # keys that correspond to the same product.
+      FIRST_VALUE(ProductKey) OVER (
+        PARTITION BY ProductAlternateKey
+        ORDER BY Status ASC
+        ) AS CurrentProductKey,
+    FROM rullansabater.github.DimProduct
+  ),
+  Sales AS (
+    SELECT
+      ProductKey,
+      EXTRACT(YEAR FROM OrderDate) AS OrderYear,
+      EXTRACT(MONTH FROM OrderDate) AS OrderMonth,
+      SUM(SalesAmount) AS SalesAmount,
+    FROM rullansabater.github.FactResellerSales
+    GROUP BY 1, 2, 3
+  ),
+  # Get the list of ProductKey values with any sales in 2012.
+  SalesIn2012 AS (
+    SELECT ProductKey
+    FROM Sales
+    WHERE OrderYear = 2012
+    GROUP BY 1
+    HAVING SUM(SalesAmount) > 0
+  )
+  SELECT
+    # Note
+    #   The Products table is not complete. For example, 
+    #   does not contain #293. To circument this issue,
+    #   we use `COALESCE()` and we will not lose any sales data.
+    COALESCE(Products.CurrentProductKey, Sales.ProductKey) AS ProductKey,
+    SUM(Sales.SalesAmount) AS SalesAmount,
+    Sales.OrderMonth,
+  FROM Sales
+  LEFT JOIN Products
+    ON Sales.ProductKey = Products.ProductKey
+  # Keep only products with sales in 2012.
+  WHERE Sales.ProductKey IN (SELECT ProductKey FROM SalesIn2012)
+  GROUP BY 1, 3
+  ORDER BY 1, 3, 2;
 
 # Task 5.
 # TODO: write findings in README.
