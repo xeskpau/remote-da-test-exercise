@@ -108,17 +108,17 @@ WITH
   # There is only 1 NULL value, which is for `AccountKey = 1`.
   Accounts AS (
     SELECT DISTINCT AccountKey, AccountType
-    FROM rullansabater.github.DimAccounts
+    FROM rullansabater.remote.DimAccounts
   ),
   Scenarios AS (
     SELECT DISTINCT ScenarioKey, ScenarioName
-    FROM rullansabater.github.DimScenario
+    FROM rullansabater.remote.DimScenario
   ),
   # TODO: Review, because the AccountType field contains NULL values.
   # Note: `ScenarioKey = 3` (i.e. "Forecast") does not exist.
   Finance AS (
     SELECT ScenarioKey, AccountKey, SUM(Amount) AS FinanceAmount
-    FROM rullansabater.github.FactFinance
+    FROM rullansabater.remote.FactFinance
     WHERE LEFT(CAST(DateKey AS STRING), 4) = '2011'
     GROUP BY 1, 2
   ),
@@ -185,7 +185,7 @@ WITH
         PARTITION BY ProductAlternateKey
         ORDER BY Status ASC
         ) AS CurrentProductKey,
-    FROM rullansabater.github.DimProduct
+    FROM rullansabater.remote.DimProduct
   ),
   Sales AS (
     SELECT
@@ -193,7 +193,7 @@ WITH
       EXTRACT(YEAR FROM OrderDate) AS OrderYear,
       EXTRACT(MONTH FROM OrderDate) AS OrderMonth,
       SUM(SalesAmount) AS SalesAmount,
-    FROM rullansabater.github.FactResellerSales
+    FROM rullansabater.remote.FactResellerSales
     GROUP BY 1, 2, 3
   ),
   # Get the list of ProductKey values with any sales in 2012.
@@ -241,7 +241,7 @@ WITH
         # TODO: Assumption is all are born in 20th century.
         DATE(CONCAT('19', RIGHT(birthdate, 2), '-', SUBSTR(birthdate, 4, 2), '-', LEFT(birthdate, 2))),
         YEAR) AS age,
-    FROM rullansabater.github.DimCustomer
+    FROM rullansabater.remote.DimCustomer
   ),
   CustomerGroups AS (
     SELECT
