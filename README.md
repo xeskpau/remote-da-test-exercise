@@ -8,7 +8,7 @@ As a part of the interview process for a Data Analyst position at Remote.com, we
 
 ## Data overview
 
-Remote.com has shared a spreadsheet with 7 sheets of raw data (see file `Data Analyst Assignment.xlsx`; #TODO: Attach file). Each sheet can be considered a separate data table, and their content is summarized as follows (see  section ***Scoping*** below for more information; #TODO: Add link to Scoping.) ─
+Remote.com has shared a spreadsheet with 7 sheets of raw data (see file `Data Analyst Assignment.xlsx`). Each sheet can be considered a separate data table, and their content is summarized as follows (see  section ***Scoping*** below for more information) ─
 
 | # | Table name | Primary key | Candidate key | Comment |
 |:--:|:--:|:--:|:--:|:--:|
