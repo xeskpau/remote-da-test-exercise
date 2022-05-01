@@ -1,7 +1,3 @@
-/* TODO(lluc): Add file overview.
- *
- */
- 
 # Task 1.
 WITH
   # Get product key for the product of interest.
@@ -104,8 +100,7 @@ ORDER BY `Month` ASC, 2, 3;
 
 # Task 3.
 WITH
-  # TODO: Review, because the AccountType field contains NULL values.
-  # There is only 1 NULL value, which is for `AccountKey = 1`.
+  # Note: There is only 1 NULL value, which is for `AccountKey = 1`.
   Accounts AS (
     SELECT DISTINCT AccountKey, AccountType
     FROM rullansabater.remote.DimAccounts
@@ -114,7 +109,6 @@ WITH
     SELECT DISTINCT ScenarioKey, ScenarioName
     FROM rullansabater.remote.DimScenario
   ),
-  # TODO: Review, because the AccountType field contains NULL values.
   # Note: `ScenarioKey = 3` (i.e. "Forecast") does not exist.
   Finance AS (
     SELECT ScenarioKey, AccountKey, SUM(Amount) AS FinanceAmount
@@ -221,12 +215,10 @@ WITH
   ORDER BY 1, 3, 2;
 
 # Task 5.
-# TODO: write findings in README.
-# Findings: Min age is 36 and max age is 106.
+# Note: Min age is 36 and max age is 106.
 # We should probably adjust the buckets so that 
 # there is a roughly equal distribution.
 # See the data viz task for this.
-
 WITH
   # Note: Birthday is in format "DD/MM/YY", automatically interpreted as string.
   # Note: MaritalStatus and Gender contain only 2 values each.
@@ -238,7 +230,7 @@ WITH
       DATE_DIFF(
         CURRENT_DATE(),
         # Convert the `birthdate` field from `DD/MM/YY` to `YYYY-MM-DD`.
-        # TODO: Assumption is all are born in 20th century.
+        # Note: Assumption is all are born in 20th century.
         DATE(CONCAT('19', RIGHT(birthdate, 2), '-', SUBSTR(birthdate, 4, 2), '-', LEFT(birthdate, 2))),
         YEAR) AS age,
     FROM rullansabater.remote.DimCustomer
