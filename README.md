@@ -198,8 +198,10 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 > -   Table containing the information is _DimCustomer_
 </details>
 
-**Findings:**
-  
+**Assumptions:**
+* All customers were born in the 20th century. This assumption is needed because the date of birth of customers is in the format `DD/MM/YY`, which means that we cannot obtain information on whether a user was born in the 1900s or 2000s. As such, it is a fair assumption that all customers were born before the year 2000. Moving forward, our raw data should capture the exact year (i.e. 1920 vs 2020) for our customers' date of birth.
+
+**Findings:**  
 * There are no customers in the category "Age <35". In the data visualization exercise "Task 8", using parameterized filters, users can tweak the lower and upper age bounds for the three categories (currently, the lower age bound is 35, and the upper age bound is 50).
 * A large fraction of customers (5266 of 18484; 28%) are "Married" and "Male".
 * More "Women" are "Single" in the category "Age between 35-50" (2494 of 4338; 57%), and more "Women" are "Married" in the category "Age >50" (2819 of 4745; 59%).
