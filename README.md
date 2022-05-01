@@ -200,7 +200,7 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 
 **Findings:**
   
-* There are no customers in the category "Age <35". In the data visualization exercise "Task 8", users can tweak the lower and upper age bounds for the three categories (currently, the lower age bound is 35, and the upper age bound is 50).
+* There are no customers in the category "Age <35". In the data visualization exercise "Task 8", using parameterized filters, users can tweak the lower and upper age bounds for the three categories (currently, the lower age bound is 35, and the upper age bound is 50).
 * A large fraction of customers (5266 of 18484; 28%) are "Married" and "Male".
 * More "Women" are "Single" in the category "Age between 35-50" (2494 of 4338; 57%), and more "Women" are "Married" in the category "Age >50" (2819 of 4745; 59%).
 
@@ -210,8 +210,8 @@ The three data visualization tasks have been addressed via a Tableau Public dash
   
 <details>
   <summary>💡 🖱 Click to see a preview of the Tableau dashboard!</summary>
-<div class='tableauPlaceholder' id='viz1651171584582' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;LR&#47;LRSGitHubDAHomeTestExercise&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='LRSGitHubDAHomeTestExercise&#47;Dashboard1' /><param name='tabs' value='yes' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;LR&#47;LRSGitHubDAHomeTestExercise&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /></object></div>   
-
+<div class='tableauPlaceholder' id='viz1651171584582' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;LR&#47;LRSGitHubDAHomeTestExercise&#47;Dashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='LRSGitHubDAHomeTestExercise&#47;Dashboard' /><param name='tabs' value='yes' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;LR&#47;LRSGitHubDAHomeTestExercise&#47;Dashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /></object></div>   
+  
 </details>
 
 ### Task 6
@@ -224,7 +224,10 @@ The three data visualization tasks have been addressed via a Tableau Public dash
 </details>
 
 **Findings:**
-*  TODO(lluc): Fill out.
+*  The product "LL Headset" had the lowest global sales for the first three months of 2012, and also in the fifth month of the year.
+*  "Half-" and "Full-Finger Gloves" of different sizes ("S" and "L") had the lowest global sales during a total of five months of 2012.
+*  "LL Road Frame - Red, 52" and "LL Road Seat/Saddle" had the lowest global sales during one month of 2012 each, and they were the only two products the sales of which came from a single country (in both cases, "United States").
+*  "LL Road Seat/Saddle" was the product that had the lowest global sales within a single month during 2012: $16.27.
 
 ### Task 7
 
@@ -236,7 +239,10 @@ The three data visualization tasks have been addressed via a Tableau Public dash
 </details>
 
 **Findings:**
-*  TODO(lluc): Fill out.
+*  Surprisingly, there is no data for the "Forecast Scenario". This might be explained due to actual data already being available, leading to the forecast no longer being relevant (there is possibly no need for its data to be stored).
+*  "Assets" and "Liabilities" have the same values. The relationship that related these these two items is `Assets − Liabilities = Equity`. In this case, `Assets = Liabilities`, which suggests that the (un)tangibles owned by the company (i.e. assets) are equal to what the company owes (i.e. liabilitie). As such, the company does not have equity.
+*  As for "Revenue", actuals are greater than the budget, which means that the company exceeded expectations. Similarly, for "Expenditures", the actuals exceed expectations, since the actual expenditures were lower than the budgeted expenditures.
+*  Finally, "Flow" and "Balances" are positive, which means that overall the company had liquidity.
 
 ### Task 8
 
@@ -248,4 +254,6 @@ The three data visualization tasks have been addressed via a Tableau Public dash
 </details>
 
 **Findings:**
-*  TODO(lluc): Fill out.
+* There are no customers in the category "Age <35". Using parameterized filters, users can tweak the lower and upper age bounds for the three categories (currently, the lower age bound is 35, and the upper age bound is 50).
+* A large fraction of customers (5266 of 18484; 28%) are "Married" and "Male".
+* More "Women" are "Single" in the category "Age between 35-50" (2494 of 4338; 57%), and more "Women" are "Married" in the category "Age >50" (2819 of 4745; 59%).
