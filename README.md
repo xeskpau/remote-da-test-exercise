@@ -182,7 +182,7 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 
 ## Visualization tasks
 
-The three data visualization tasks have been addressed via a Tableau Public dashboard, which is [available here](https://public.tableau.com/app/profile/lluc.rullan.sabater/viz/LRSGitHubDAHomeTestExercise/Dashboard) (note: the dashboard is not directly searchable, and only availablew with the direct link).
+The three data visualization tasks have been addressed via a Tableau Public dashboard, which is [available here](https://public.tableau.com/app/profile/lluc.rullan.sabater/viz/LRSGitHubDAHomeTestExercise/Dashboard) (note: the dashboard is not directly searchable, and only available with the direct link).
   
 <details>
   <summary>💡 🖱 Click to see a preview of the Tableau dashboard!</summary>
