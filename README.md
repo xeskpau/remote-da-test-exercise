@@ -90,6 +90,8 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 
 </details>
 
+**Findings:**
+*  TODO(lluc): Fill out.
 
 ### Task 2
 
@@ -113,6 +115,9 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
  * The prompt is requesting to (1) calculate the lowest revenue-generating product **globally** at **monthly level** in 2012; and (2) for each product, **break down its monthly sales by country**. *For example, in January we might find that product "X" had the lowest global revenue with 100€, which was distributed across US (50€), UK (40€), and France (10€).*
  * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to calculate the lowest revenue-generating product by **country for each month in 2012**. *For example, in January we might find that product "X" had the lowest revenue in France (10€).*
 
+**Findings:**
+*  TODO(lluc): Fill out.
+
 ### Task 3
 
 
@@ -130,6 +135,9 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 >
 > -   Tables containing the information are _DimScenario, DimAccount, FactFinance_
 </details>
+
+**Findings:**
+*  TODO(lluc): Fill out.
 
 ### Task 4
 
@@ -152,6 +160,9 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 **Assumption:**
  * The prompt is requesting to find all historical data for products that had any sales in 2012. As such, we will show all months of data for any product that had sales during 2012. This means that if a product had sales at any time in 2012, I would present their sales across all history (e.g. 2011, 2013,...).
  * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to find data in 2012 (i.e. 12 months only) for products with sales, and their monthly sales breakdown. Here, we would show all months of data for any product that had sales during 2012. This means that we would only present the sales of the product in the year 2012.
+
+**Findings:**
+*  TODO(lluc): Fill out.
 
 ### Task 5
 
@@ -199,6 +210,9 @@ The three data visualization tasks have been addressed via a Tableau Public dash
 > Based on your results for question #2 above, create a visualization to highlight the sales territories with the lowest sales performances. Are there any territories with consistent low sales performance over time?
 </details>
 
+**Findings:**
+*  TODO(lluc): Fill out.
+
 ### Task 7
 
 **Prompt:**
@@ -208,6 +222,9 @@ The three data visualization tasks have been addressed via a Tableau Public dash
 > Create a visualization based on your results for question #3 above, so that the user can switch between scenarios and account types. Please explain what insight can we gain from these results.
 </details>
 
+**Findings:**
+*  TODO(lluc): Fill out.
+
 ### Task 8
 
 **Prompt:**
@@ -216,3 +233,6 @@ The three data visualization tasks have been addressed via a Tableau Public dash
   
 > Create a visualization based on your results for question #5 above. Please explain what insight can we gain from these results.
 </details>
+
+**Findings:**
+*  TODO(lluc): Fill out.
