@@ -90,8 +90,9 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 
 </details>
 
-**Findings:**
-*  TODO(lluc): Fill out.
+**Findings and notes:**
+* The highest transactions for the product  "Sport-100 Helmet, Red" seem to occur in the last 4 days of the month (28th, 29th, 30th, or 31st). Understanding the patterns in our customers' larger purchases can help us better staff our stores and warehouses. As a follow-up exercise, we could look into whether this is a pattern that is prevalent across products, and whether this can help us improve our business operations.
+* For a given `ProductName`, there are multiple `ProductKey` values, only one of which has a value of `Status = 'current'`. For `ProductName = 'Sport-100 Helmet, Red'`, there are three keys `212`, `213`, and `214`. The query for this task consolidates all `ProductKey` values under the name `ProductName`.
 
 ### Task 2
 
@@ -115,8 +116,11 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
  * The prompt is requesting to (1) calculate the lowest revenue-generating product **globally** at **monthly level** in 2012; and (2) for each product, **break down its monthly sales by country**. *For example, in January we might find that product "X" had the lowest global revenue with 100€, which was distributed across US (50€), UK (40€), and France (10€).*
  * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to calculate the lowest revenue-generating product by **country for each month in 2012**. *For example, in January we might find that product "X" had the lowest revenue in France (10€).*
 
-**Findings:**
-*  TODO(lluc): Fill out.
+**Findings and notes:**
+*  The product "LL Headset" had the lowest global sales for the first three months of 2012, and also in the fifth month of the year.
+*  "Half-" and "Full-Finger Gloves" of different sizes ("S" and "L") had the lowest global sales during a total of five months of 2012.
+*  "LL Road Frame - Red, 52" and "LL Road Seat/Saddle" had the lowest global sales during one month of 2012 each, and they were the only two products the sales of which came from a single country (in both cases, "United States").
+*  "LL Road Seat/Saddle" was the product that had the lowest global sales within a single month during 2012: $16.27.
 
 ### Task 3
 
@@ -137,7 +141,10 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 </details>
 
 **Findings:**
-*  TODO(lluc): Fill out.
+*  Surprisingly, there is no data for the "Forecast Scenario". This might be explained due to actual data already being available, leading to the forecast no longer being relevant (there is possibly no need for its data to be stored).
+*  "Assets" and "Liabilities" have the same values. The relationship that related these these two items is `Assets − Liabilities = Equity`. In this case, `Assets = Liabilities`, which suggests that the (un)tangibles owned by the company (i.e. assets) are equal to what the company owes (i.e. liabilitie). As such, the company does not have equity.
+*  As for "Revenue", actuals are greater than the budget, which means that the company exceeded expectations. Similarly, for "Expenditures", the actuals exceed expectations, since the actual expenditures were lower than the budgeted expenditures.
+*  Finally, "Flow" and "Balances" are positive, which means that overall the company had liquidity.
 
 ### Task 4
 
@@ -162,7 +169,8 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
  * An alternative interpretation (which is not addressed here) is that the prompt might be requesting us only to find data in 2012 (i.e. 12 months only) for products with sales, and their monthly sales breakdown. Here, we would show all months of data for any product that had sales during 2012. This means that we would only present the sales of the product in the year 2012.
 
 **Findings:**
-*  TODO(lluc): Fill out.
+* See the query for details on sales amount on a product basis.
+* The `ProductKey = 293` is found in the `FactReellerSales` data, but not in the `DimProduct` table.
 
 ### Task 5
 
@@ -190,6 +198,11 @@ Below, you can **click** to expand the entity-relation diagram. For higher resol
 > -   Table containing the information is _DimCustomer_
 </details>
 
+**Findings:**
+  
+* There are no customers in the category "Age <35". In the data visualization exercise "Task 8", users can tweak the lower and upper age bounds for the three categories (currently, the lower age bound is 35, and the upper age bound is 50).
+* A large fraction of customers (5266 of 18484; 28%) are "Married" and "Male".
+* More "Women" are "Single" in the category "Age between 35-50" (2494 of 4338; 57%), and more "Women" are "Married" in the category "Age >50" (2819 of 4745; 59%).
 
 ## Visualization tasks
 
